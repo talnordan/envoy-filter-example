@@ -1,12 +1,12 @@
 #include <string>
 
-#include "http_filter.h"
+#include "envoy/registry/registry.h"
 
 #include "common/config/json_utility.h"
-#include "envoy/registry/registry.h"
 
 #include "http-filter-example/http_filter.pb.h"
 #include "http-filter-example/http_filter.pb.validate.h"
+#include "http_filter.h"
 
 namespace Envoy {
 namespace Server {

@@ -1,11 +1,14 @@
-package(default_visibility = ["//visibility:public"])
+licenses(["notice"])  # Apache 2
+
 
 load(
-    "@envoy//bazel:envoy_build_system.bzl",
+    "//bazel:envoy_build_system.bzl",
     "envoy_cc_binary",
     "envoy_cc_library",
     "envoy_cc_test",
-)
+, "envoy_package")
+
+envoy_package()
 
 load("@envoy_api//bazel:api_build_system.bzl", "api_proto_library")
 
@@ -14,7 +17,7 @@ envoy_cc_binary(
     repository = "@envoy",
     deps = [
         ":http_filter_config",
-        "@envoy//source/exe:envoy_main_entry_lib",
+        "//source/exe:envoy_main_entry_lib",
     ],
 )
 
@@ -30,7 +33,7 @@ envoy_cc_library(
     repository = "@envoy",
     deps = [
         ":http_filter_proto_cc",
-        "@envoy//source/exe:envoy_common_lib",
+        "//source/exe:envoy_common_lib",
     ],
 )
 
@@ -40,7 +43,7 @@ envoy_cc_library(
     repository = "@envoy",
     deps = [
         ":http_filter_lib",
-        "@envoy//include/envoy/server:filter_config_interface",
+        "//include/envoy/server:filter_config_interface",
     ],
 )
 
@@ -50,6 +53,6 @@ envoy_cc_test(
     repository = "@envoy",
     deps = [
         ":http_filter_config",
-        "@envoy//test/integration:http_integration_lib",
+        "//test/integration:http_integration_lib",
     ],
 )

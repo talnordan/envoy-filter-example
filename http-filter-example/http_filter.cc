@@ -1,14 +1,13 @@
-#include <string>
-
 #include "http_filter.h"
+
+#include <string>
 
 #include "envoy/server/filter_config.h"
 
 namespace Envoy {
 namespace Http {
 
-HttpSampleDecoderFilterConfig::HttpSampleDecoderFilterConfig(
-    const sample::Decoder& proto_config)
+HttpSampleDecoderFilterConfig::HttpSampleDecoderFilterConfig(const sample::Decoder& proto_config)
     : key_(proto_config.key()), val_(proto_config.val()) {}
 
 HttpSampleDecoderFilter::HttpSampleDecoderFilter(HttpSampleDecoderFilterConfigSharedPtr config)
@@ -22,9 +21,7 @@ const LowerCaseString HttpSampleDecoderFilter::headerKey() const {
   return LowerCaseString(config_->key());
 }
 
-const std::string HttpSampleDecoderFilter::headerValue() const {
-  return config_->val();
-}
+const std::string HttpSampleDecoderFilter::headerValue() const { return config_->val(); }
 
 FilterHeadersStatus HttpSampleDecoderFilter::decodeHeaders(HeaderMap& headers, bool) {
   // add a header

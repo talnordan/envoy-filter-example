@@ -1,18 +1,21 @@
-package(default_visibility = ["//visibility:public"])
+licenses(["notice"])  # Apache 2
+
 
 load(
-    "@envoy//bazel:envoy_build_system.bzl",
+    "//bazel:envoy_build_system.bzl",
     "envoy_cc_binary",
     "envoy_cc_library",
     "envoy_cc_test",
-)
+, "envoy_package")
+
+envoy_package()
 
 envoy_cc_binary(
     name = "envoy",
     repository = "@envoy",
     deps = [
         ":echo2_config",
-        "@envoy//source/exe:envoy_main_entry_lib",
+        "//source/exe:envoy_main_entry_lib",
     ],
 )
 
@@ -22,11 +25,11 @@ envoy_cc_library(
     hdrs = ["echo2.h"],
     repository = "@envoy",
     deps = [
-        "@envoy//include/envoy/buffer:buffer_interface",
-        "@envoy//include/envoy/network:connection_interface",
-        "@envoy//include/envoy/network:filter_interface",
-        "@envoy//source/common/common:assert_lib",
-        "@envoy//source/common/common:logger_lib",
+        "//include/envoy/buffer:buffer_interface",
+        "//include/envoy/network:connection_interface",
+        "//include/envoy/network:filter_interface",
+        "//source/common/common:assert_lib",
+        "//source/common/common:logger_lib",
     ],
 )
 
@@ -36,9 +39,9 @@ envoy_cc_library(
     repository = "@envoy",
     deps = [
         ":echo2_lib",
-        "@envoy//include/envoy/network:filter_interface",
-        "@envoy//include/envoy/registry:registry",
-        "@envoy//include/envoy/server:filter_config_interface",
+        "//include/envoy/network:filter_interface",
+        "//include/envoy/registry:registry",
+        "//include/envoy/server:filter_config_interface",
     ],
 )
 
@@ -49,7 +52,7 @@ envoy_cc_test(
     repository = "@envoy",
     deps = [
         ":echo2_config",
-        "@envoy//test/integration:integration_lib"
+        "//test/integration:integration_lib"
     ],
 )
 
